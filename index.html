@@ -24,7 +24,9 @@
 <body>
     <h1 id ="headingTotal"></h1>
 
-    <input id="inputAmount" type="text"></input>  
+    <input id="inputAmount" type="text"> 
+
+    <input id="inputDesc"type="text">
    
     <button id="btnAddExpense">+</button>
 
@@ -35,21 +37,45 @@
     <script>
         // get the heading element
         const headingElement = document.querySelector("#headingTotal");
+        // get the reference to desc element
+        const inputDesc = document.querySelector("#inputDesc");
+        // read value from inputAmount
+        const inputElement = document.querySelector("#inputAmount");
+        
         // init value 0
         let totalExpense =0;
         // set the heading element to total expense
         headingElement.textContent =totalExpense;
+        //  allExpenses in one place
+        const allExpenses=[];
+
         // onButtonClick add input to total expense
         function addExpenseToTotal(){
-            // read value from inputAmount
-            const inputElement = document.querySelector("#inputAmount");
+
+            // init expense object
+            const expenseItem={};
+        
+            // read value from input amount
             const textAmount = inputElement.value;
             // console.log({textAmount});
-                   
+            // read the desc from inputDesc
+            const textDesc = inputDesc.value;
+            console.log({textDesc},{textAmount});
+                    
             // convert it to number
             const expense = parseInt(textAmount,10);
             // console.log({expense});
 
+            // put it in object
+            expenseItem.desc = textDesc;
+            expenseItem.amount= expense;
+            // console.log(expenseItem);
+
+            // put object in a list
+            allExpenses.push(expenseItem);
+            console.clear();
+            console.table(allExpenses);
+          
             // add that value to total expense
             totalExpense +=expense;
             // console.log({totalExpense});
