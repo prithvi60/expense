@@ -15,7 +15,7 @@
         /* align the boxes in cloumn */
         flex-direction: column;
         /* page background */
-        background-color: rgb(181, 241, 102);
+        background-color: rgb(238, 165, 177);
        
        }
     </style>
@@ -23,12 +23,15 @@
 </head>
 <body>
     <h1 id ="headingTotal"></h1>
+    <!-- <h1 id ="headingTotal2"></h1> -->
 
     <input id="inputAmount" type="text"> 
 
     <input id="inputDesc"type="text">
    
     <button id="btnAddExpense">+</button>
+
+    <div id="expenseTable"></div>
 
     <!-- <input type="text"></input> -->
 
@@ -37,17 +40,24 @@
     <script>
         // get the heading element
         const headingElement = document.querySelector("#headingTotal");
+        // const headingElement = document.querySelector("#headingTotal2");
         // get the reference to desc element
         const inputDesc = document.querySelector("#inputDesc");
         // read value from inputAmount
         const inputElement = document.querySelector("#inputAmount");
+        // get ref to table
+        const expenseTableEl =document.querySelector("#expenseTable");
+
+
         
         // init value 0
         let totalExpense =0;
         // set the heading element to total expense
         headingElement.textContent =totalExpense;
+        // headingElement.textContent =allExpenses(expenseItem);
         //  allExpenses in one place
         const allExpenses=[];
+        // headingElement.textContent =allExpenses;
 
         // onButtonClick add input to total expense
         function addExpenseToTotal(){
@@ -73,14 +83,41 @@
 
             // put object in a list
             allExpenses.push(expenseItem);
-            console.clear();
-            console.table(allExpenses);
+            // console.clear();
+            // console.table(allExpenses);
           
             // add that value to total expense
             totalExpense +=expense;
             // console.log({totalExpense});
             // set the heading element to total expense
-            headingElement.textContent =totalExpense;
+            const someText =`Expense is: ${totalExpense}`;
+            headingElement.textContent =someText;
+            // headingElement.textContent =allExpenses(expenseItem);
+
+            // show table
+            // const data1 = allExpenses[0];
+            // const data2 = allExpenses[1];
+            // const data3  = allExpenses[2];
+
+            // const data1Text =` ${data1.amount} ::  ${data1.desc}`;
+            // const data2Text =` ${data2.amount} ::  ${data2.desc}`;
+            // const data3Text =` ${data3.amount} ::  ${data3.desc}`;
+
+            // const tableText =`
+            //     <div>${data1Text}</div>
+            //     <div>${data2Text}</div>
+            //     <div>${data3Text}</div>
+            // `
+
+            // map func to loop the list
+            const allExpesneHTML= allExpenses.map(expense =>{
+                return `<div> ${expense.amount} :: ${expense.desc} </div>`
+            });
+            //  join func to join strings and remove comma
+            const joinedAllExpenseHTML = allExpesneHTML.join("");
+
+
+            expenseTableEl.innerHTML= joinedAllExpenseHTML;
 
         }
 
@@ -89,7 +126,7 @@
 
         // // initialize event
         const element =document.querySelector("#btnAddExpense ");
-        console.log(element);
+        // console.log(element);
 
         //  //take a number starting from zero
         //  let counter=0;
@@ -104,7 +141,7 @@
         // //Listen to click event
         element.addEventListener("click",addExpenseToTotal,false);
 
-    
+       
     </script>
 </body>
 </html>
