@@ -99,19 +99,21 @@
         //  allExpenses in one place
         const allExpenses=[];
         // headingElement.textContent =allExpenses;
+        var ran =0;
+    
 
         // date config
         // const now= new Date();
         // const datVal=  now.valueOf();
         // const options={year:'numeric',month: 'long', day: 'numeric'};
         // const dateText= now.toLocaleDateString('en-US', options);
-
+        const expenseItem={};
         // onButtonClick add input to total expense
         function addExpenseToTotal(){
 
             // init expense object
-            const expenseItem={};
-        
+          
+             
             // read value from input amount
             const textAmount = inputElement.value;
             // console.log({textAmount});
@@ -133,7 +135,7 @@
             allExpenses.push(expenseItem);
             // console.clear();
             // console.table(allExpenses);
-          
+           
             // add that value to total expense
             totalExpense +=expense;
             // console.log({totalExpense});
@@ -141,7 +143,7 @@
             const someText =`Expense is: ${totalExpense}`;
             headingElement.textContent =someText;
             // headingElement.textContent =allExpenses(expenseItem);
-
+          
             // show table
             // const data1 = allExpenses[0];
             // const data2 = allExpenses[1];
@@ -183,7 +185,7 @@
             // console.log(allExpesneHTML);
 
             expenseTableEl.innerHTML= joinedAllExpenseHTML;
-
+            
         }
 
 
@@ -208,15 +210,23 @@
 
         // Delete items
         function deleteItem(dateValue){
+            // const newArr=[];
             console.log("item deleted", dateValue);
+            
 
             for(let i=0; i< allExpenses.length; i++){
-                if(allExpenses[i].moment.valueOf()=== dateValue) {
+                if(allExpenses[i].moment.valueOf() === dateValue) {
                     console.log('Item found',allExpenses[i]);
-               
+                  
+                    allExpenses.pop(allExpenses[i]);
+                    
                 }
-            }  
-        }
+
+            // const newArr =allExpenses.filter(expense => expense.moment.valueOf() !== dateValue);
+            } 
+            renderList(allExpenses);
+            // totalExpense -= amount;      
+        } 
 
         // date function
         function getDateString(moment) {
@@ -224,6 +234,16 @@
         }
 
         // view layer
+        function renderList(arrList){
+            const allExpesneHTML= arrList.map(createListItem);
+            //  join func to join strings and remove comma
+            const joinedAllExpenseHTML = allExpesneHTML.join("");
+            // console.log(allExpesneHTML);
+            expenseTableEl.innerHTML= joinedAllExpenseHTML;
+        }
+
+
+
         function createListItem({ desc, amount, moment }){
             return`
                 <li class="list-group-item d-flex justify-content-between">
