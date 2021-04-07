@@ -150,26 +150,26 @@
             // `
 
             // map func to loop the list
-            const allExpesneHTML= allExpenses.map(expense =>{ 
-                // createListItem(expense)
-                return`
-                <li class="list-group-item d-flex justify-content-between">
-							<div class="d-flex flex-column">
-								${expense.desc}
-								<small class="text-muted">March 11, 2021</small>
-							</div>
-							<div>
-								<span class="px-5">
-									${expense.amount}
-								</span>
-								<button type="button" class="btn btn-outline-danger btn-sm">
-                                    <i class="fas fa-minus-circle"></i>
-								</button>
-							</div>
-						</li>
-                `;
+            // const allExpesneHTML= allExpenses.map(expense =>{ createListItem(expense) });
+            const allExpesneHTML= allExpenses.map(createListItem);
+                // return`
+                //  <li class="list-group-item d-flex justify-content-between">
+				//  			<div class="d-flex flex-column">
+				//  				${expense.desc}
+				//  				<small class="text-muted">March 11, 2021</small>
+				//  			</div>
+				//  			<div>
+				//  				<span class="px-5">
+				//  					${expense.amount}
+				//  				</span>
+				//  				<button type="button" class="btn btn-outline-danger btn-sm">
+                //                      <i class="fas fa-minus-circle"></i>
+				//  				</button>
+				//  			</div>
+				//  		</li>
+                //  `;
 
-            });
+            // });
             //  join func to join strings and remove comma
             const joinedAllExpenseHTML = allExpesneHTML.join("");
             // console.log(allExpesneHTML);
@@ -199,25 +199,24 @@
         element.addEventListener("click",addExpenseToTotal,false);
         
         // view layer
-        // function createListItem({ desc, amount }) {
-        //     return`
-        //         <li class="list-group-item d-flex justify-content-between">
-		// 					<div class="d-flex flex-column">
-		// 						${desc}
-		// 						<small class="text-muted">March 11, 2021</small>
-		// 					</div>
-		// 					<div>
-		// 						<span class="px-5">
-		// 							${amount}
-		// 						</span>
-		// 						<button type="button" class="btn btn-outline-danger btn-sm">
-        //                             <i class="fas fa-minus-circle"></i>
-		// 						</button>
-		// 					</div>
-		// 				</li>
-        //         `;
-
-        // }
+        function createListItem({ desc, amount }){
+            return`
+                <li class="list-group-item d-flex justify-content-between">
+							<div class="d-flex flex-column">
+                            ${desc}
+                            <small class="text-muted">March 11, 2021</small>
+							</div>
+                        
+                            <span class="px-5">
+                            ${amount}
+                            </span>
+                            <button type="button" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-minus-circle"></i>
+                            </button>
+							</div>
+                </li>
+                  ` ;
+        }
        
     </script>
 </body>
