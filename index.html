@@ -93,6 +93,7 @@
         
         // init value 0
         let totalExpense =0;
+        let delTotal =0;
         // set the heading element to total expense
         headingElement.textContent =totalExpense;
         // headingElement.textContent =allExpenses(expenseItem);
@@ -135,9 +136,12 @@
             allExpenses.push(expenseItem);
             // console.clear();
             // console.table(allExpenses);
-           
+
+            //  to upate the total for delete
+            delTotal = expense;
             // add that value to total expense
-            totalExpense +=expense;
+            totalExpense +=expenseItem.amount;
+           
             // console.log({totalExpense});
             // set the heading element to total expense
             const someText =`Expense is: ${totalExpense}`;
@@ -217,18 +221,21 @@
         // Delete items
         function deleteItem(dateValue){
             // const newArr=[];
-            console.log("item deleted", dateValue);            
+            // console.log("item deleted", dateValue);            
             for(let i=0; i< allExpenses.length; i++){
                 if(allExpenses[i].moment.valueOf() === dateValue) {
-                    console.log('Item found',allExpenses[i]);
+                    // console.log('Item found',allExpenses[i]);
                     allExpenses.pop(allExpenses[i]);
                     
                 }
-
+                console.log(delTotal);
             // const newArr =allExpenses.filter(expense => expense.moment.valueOf() !== dateValue);
             } 
             renderList(allExpenses);
-            // totalExpense -= amount;      
+            console.log(totalExpense-delTotal);
+            totalExpense -= delTotal;
+            // document.getElementById('headingTotal').value= `${totalExpense}` ;
+            headingElement.textContent =`Expense is: ${totalExpense}`;
         } 
 
         // date function
