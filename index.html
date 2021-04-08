@@ -184,10 +184,15 @@
             const joinedAllExpenseHTML = allExpesneHTML.join("");
             // console.log(allExpesneHTML);
 
-            expenseTableEl.innerHTML= joinedAllExpenseHTML;
-            
+            expenseTableEl.innerHTML= joinedAllExpenseHTML;      
         }
 
+        // reset input fields
+        function removeInput(){
+            document.getElementById('inputDesc').value='';
+            document.getElementById('inputAmount').value='';
+        }
+  
 
 
 
@@ -207,6 +212,7 @@
        
         // //Listen to click event
         element.addEventListener("click",addExpenseToTotal,false);
+        element.addEventListener("click",removeInput,false);
 
         // Delete items
         function deleteItem(dateValue){
