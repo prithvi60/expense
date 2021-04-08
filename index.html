@@ -99,7 +99,7 @@
         //  allExpenses in one place
         const allExpenses=[];
         // headingElement.textContent =allExpenses;
-        var ran =0;
+        // var ran =0;
     
 
         // date config
@@ -112,7 +112,7 @@
         function addExpenseToTotal(){
 
             // init expense object
-          
+            const expenseItem={};
              
             // read value from input amount
             const textAmount = inputElement.value;
@@ -211,13 +211,10 @@
         // Delete items
         function deleteItem(dateValue){
             // const newArr=[];
-            console.log("item deleted", dateValue);
-            
-
+            console.log("item deleted", dateValue);            
             for(let i=0; i< allExpenses.length; i++){
                 if(allExpenses[i].moment.valueOf() === dateValue) {
                     console.log('Item found',allExpenses[i]);
-                  
                     allExpenses.pop(allExpenses[i]);
                     
                 }
