@@ -120,13 +120,17 @@
             // console.log({textAmount});
             // read the desc from inputDesc
             const textDesc = inputDesc.value;
-            console.log({textDesc},{textAmount});
+            // console.log({textDesc},{textAmount});
                     
             // convert it to number
-            const expense = parseInt(textAmount,10);
+            var expense = parseInt(textAmount,10);
             // console.log({expense});
 
-            // put it in object
+            // to remove NaN bug
+            if(isNaN(expense) || (expense<0)){
+                expense=0;
+            }   
+                        // put it in object
             expenseItem.desc = textDesc;
             expenseItem.amount= expense;
             expenseItem.moment=new Date();
@@ -228,11 +232,11 @@
                     allExpenses.pop(allExpenses[i]);
                     
                 }
-                console.log(delTotal);
+                // console.log(delTotal);
             // const newArr =allExpenses.filter(expense => expense.moment.valueOf() !== dateValue);
             } 
             renderList(allExpenses);
-            console.log(totalExpense-delTotal);
+            // console.log(totalExpense-delTotal);
             totalExpense -= delTotal;
             // document.getElementById('headingTotal').value= `${totalExpense}` ;
             headingElement.textContent =`Expense is: ${totalExpense}`;
