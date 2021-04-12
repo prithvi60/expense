@@ -127,7 +127,9 @@
             // console.log({expense});
 
             // to remove NaN bug
-            if(isNaN(expense) || (expense<0)){
+            // if(isNaN(expense) || (expense<0))
+            if(isNaN(expense))
+            {
                 expense=0;
             }   
                         // put it in object
@@ -228,9 +230,9 @@
             // console.log("item deleted", dateValue);            
             for(let i=0; i< allExpenses.length; i++){
                 if(allExpenses[i].moment.valueOf() === dateValue) {
-                    // console.log('Item found',allExpenses[i]);
+                    console.log('Item found',allExpenses[i]);
                     allExpenses.pop(allExpenses[i]);
-                    
+                    // allExpenses.filter( allExpenses[i]);
                 }
                 // console.log(delTotal);
             // const newArr =allExpenses.filter(expense => expense.moment.valueOf() !== dateValue);
@@ -238,7 +240,9 @@
             renderList(allExpenses);
             // console.log(totalExpense-delTotal);
             totalExpense -= delTotal;
-            // document.getElementById('headingTotal').value= `${totalExpense}` ;
+            // console.log({totalExpense,delTotal});     
+            // console.log(totalExpense-delTotal);
+           // document.getElementById('headingTotal').value= `${totalExpense}` ;
             headingElement.textContent =`Expense is: ${totalExpense}`;
         } 
 
